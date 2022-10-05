@@ -118,3 +118,9 @@ function viewallDepartments() {
         })
         .then(() => loadMainPrompts());
 }
+
+// Quit app
+function quit() {
+    console.log("Thank you for using Employee Tracker!");
+    process.exit();
+}
