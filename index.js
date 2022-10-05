@@ -11,7 +11,7 @@ function init() {
 function runPrompts() {
     prompt([
         {
-            // Load these prompts on NPM start
+            // Load on NPM start
             type: "list",
             name: "choice",
             message: "What would you like to do?",
@@ -20,14 +20,14 @@ function runPrompts() {
                     name: "View All Employees",
                     value: "VIEW_EMPLOYEES"
                 },
-                {
-                    name: "Add an Employee",
-                    value: "ADD_EMPLOYEE"
-                },
-                {
-                    name: "Update Employee Role",
-                    value: "UPDATE_EMPLOYEE_ROLE"
-                },
+               // {
+                   // name: "Add an Employee",
+                  //  value: "ADD_EMPLOYEE"
+              //  },
+               // {
+                   // name: "Update Employee Role",
+                  //  value: "UPDATE_EMPLOYEE_ROLE"
+               // },
                 {
                     name: "View All Roles",
                     value: "VIEW_ROLES"
@@ -45,39 +45,36 @@ function runPrompts() {
                     value: "ADD_DEPARTMENT"
                 },
                 {
-                    name: "View Total Utilized Budget By Department",
-                    value: "VIEW_UTILIZED_BUDGET_BY_DEPARTMENT"
-                },
-                {
                     name: "Quit",
                     value: "QUIT"
                 }
             ]
         }
+
     ]).then(res => {
         let choice = res.choice;
         // Call the functions from what the user selects
         switch (choice) {
             case "VIEW_EMPLOYEES":
-                viewEmployees();
+                viewAllEmployees();
                 break;
-            case "ADD_EMPLOYEE":
-                addEmployee();
-                break;
-            case "UPDATE_EMPLOYEE_ROLE":
-                updateEmployeeRole();
-                break;
+         // case "ADD_EMPLOYEE":
+            //     addEmployee();
+            //     break;
+         // case "UPDATE_EMPLOYEE_ROLE":
+            //     updateEmployeeRole();
+            //     break;
             case "VIEW_DEPARTMENTS":
-                viewDepartments();
+                viewAllDepartments();
                 break;
             case "ADD_DEPARTMENT":
-                addDepartment();
+                createDepartment();
                 break;
             case "VIEW_ROLES":
-                viewRoles();
+                viewAllRoles();
                 break;
             case "ADD_ROLE":
-                addRole();
+                createRole();
                 break;
             default:
                 quit();
@@ -94,7 +91,7 @@ function viewAllEmployees() {
             console.log("\n");
             console.table(employees);
         })
-        .then(() => loadMainPrompts());
+        .then(() => runPrompts());
 }
 
 // View all roles
@@ -105,7 +102,7 @@ function viewAllRoles() {
             console.log("\n");
             console.table(roles);
         })
-        .then(() => loadMainPrompts());
+        .then(() => runPrompts());
 }
 
 // View all deparments
@@ -116,11 +113,61 @@ function viewallDepartments() {
             console.log("\n");
             console.table(departments);
         })
-        .then(() => loadMainPrompts());
+        .then(() => runPrompts());
 }
+
+// Add a role
+function createRole() {
+    db.allDepartments()
+        .then(([rows]) => {
+            let departments = rows;
+            const departmentChoices = departments.map(({ id, name }) => ({
+                name: name,
+                value: id
+            }));
+
+            prompt([
+                {
+                    name: "title",
+                    message: "What is the name of the role?"
+                },
+                {
+                    name: "salary",
+                    message: "What is the salary rate?"
+                },
+                {
+                    type: "list",
+                    name: "department_id",
+                    message: "Which department does the role fall in under?",
+                    choices: departmentChoices
+                }
+            ])
+                .then(role => {
+                    db.addRole(role)
+                        .then(() => console.log(`Added ${role.title} to the database`))
+                        .then(() => runPrompts())
+                })
+        })
+}
+
+
+// Add department
+function createDepartment() {
+    prompt([
+        {
+            name: "name",
+            message: "What is the name of the department?"
+        }
+    ])
+        .then(res => {
+            let name = res;
+            db.addDepartment(name)
+                .then(() => console.log(`Added ${name.name} to the database`))
+                .then(() => runPrompts())
+        })
 
 // Quit app
 function quit() {
     console.log("Thank you for using Employee Tracker!");
     process.exit();
-}
+}}
