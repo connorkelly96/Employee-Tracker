@@ -4,6 +4,10 @@ const db = require("./db");
 
 init();
 
+function init() {
+    runprompts();
+}
+
 // View all employees
 function viewAllEmployees() {
     db.allEmployees()
