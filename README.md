@@ -15,3 +15,5 @@ Node.js
 NPM
 Inquirer
 MySQL
+
+### Video Walkthrough:
