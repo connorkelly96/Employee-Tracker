@@ -17,15 +17,7 @@ class employeeDB {
         return this.connection.promise().query("INSERT INTO employee SET ?", employee);
     }
 
-    // Delete employee
-   // deleteEmployee(employeeId) {
-     //  return this.connection.promise().query(
-      //      "DELETE FROM employee WHERE id = ?",
-     //       employeeId
-     //   );
-   // }
-
-    // Find all the managers
+    // Display managers
     allManagers(employeeId) {
         return this.connection.promise().query(
             "SELECT id, first_name, last_name FROM employee WHERE id != ?",
@@ -41,7 +33,7 @@ class employeeDB {
     }
 
     // Create new role
-    createRole(role) {
+    addRole(role) {
         return this.connection.promise().query("INSERT INTO role SET ?", role);
     }
 
