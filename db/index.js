@@ -5,7 +5,7 @@ class employeeDB {
         this.connection = connection;
     }
 
-    // Find all the employees
+    // Display all the employees
     allEmployees() {
         return this.connection.promise().query(
             "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;"
@@ -18,12 +18,12 @@ class employeeDB {
     }
 
     // Delete employee
-    deleteEmployee(employeeId) {
-        return this.connection.promise().query(
-            "DELETE FROM employee WHERE id = ?",
-            employeeId
-        );
-    }
+   // deleteEmployee(employeeId) {
+     //  return this.connection.promise().query(
+      //      "DELETE FROM employee WHERE id = ?",
+     //       employeeId
+     //   );
+   // }
 
     // Find all the managers
     allManagers(employeeId) {
@@ -33,7 +33,7 @@ class employeeDB {
         );
     }
 
-    // Find all the roles
+    // Display all the roles
     allRoles() {
         return this.connection.promise().query(
             "SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.department_id = department.id;"
@@ -45,5 +45,16 @@ class employeeDB {
         return this.connection.promise().query("INSERT INTO role SET ?", role);
     }
 
+        // Display departments
+        allDepartments() {
+            return this.connection.promise().query(
+                "SELECT department.id, department.name FROM department;"
+            );
+        }
+    
+        // Add department
+        allDepartment(department) {
+            return this.connection.promise().query("INSERT INTO department SET ?", department);
+        }
 }
     module.exports = new employeeDB(connection);
