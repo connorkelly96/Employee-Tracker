@@ -17,33 +17,33 @@ function runPrompts() {
             message: "What would you like to do?",
             choices: [
                 {
-                    name: "View All Employees",
-                    value: "VIEW_EMPLOYEES"
+                    name: "View All Departments",
+                    value: "VIEW_DEPARTMENTS"
                 },
-               // {
-                   // name: "Add an Employee",
-                  //  value: "ADD_EMPLOYEE"
-              //  },
-               // {
-                   // name: "Update Employee Role",
-                  //  value: "UPDATE_EMPLOYEE_ROLE"
-               // },
                 {
                     name: "View All Roles",
                     value: "VIEW_ROLES"
                 },
                 {
-                    name: "Add a Role",
-                    value: "ADD_ROLE"
-                },
-                {
-                    name: "View All Departments",
-                    value: "VIEW_DEPARTMENTS"
+                    name: "View All Employeess",
+                    value: "VIEW_EMPLOYEES"
                 },
                 {
                     name: "Add a Department",
                     value: "ADD_DEPARTMENT"
                 },
+                {
+                    name: "Add a Role",
+                    value: "ADD_ROLE"
+                },
+                //{
+                    //name: "Add an Employee",
+                    //value: "ADD_EMPLOYEE"
+                //},
+                //{
+                    //name: "Update Emplooyee Role",
+                    //value: "UPDATE_EMPLOYEE_ROLE"
+                //},
                 {
                     name: "Quit",
                     value: "QUIT"
@@ -55,27 +55,28 @@ function runPrompts() {
         let choice = res.choice;
         // Call the functions from what the user selects
         switch (choice) {
-            case "VIEW_EMPLOYEES":
-                viewAllEmployees();
-                break;
-         // case "ADD_EMPLOYEE":
-            //     addEmployee();
-            //     break;
-         // case "UPDATE_EMPLOYEE_ROLE":
-            //     updateEmployeeRole();
-            //     break;
+
             case "VIEW_DEPARTMENTS":
                 viewAllDepartments();
-                break;
-            case "ADD_DEPARTMENT":
-                createDepartment();
                 break;
             case "VIEW_ROLES":
                 viewAllRoles();
                 break;
+            case "VIEW_EMPLOYEES":
+                viewAllEmployees();
+                break;
+            case "ADD_DEPARTMENT":
+                createDepartment();
+                break;
             case "ADD_ROLE":
                 createRole();
                 break;
+                             // case "ADD_EMPLOYEE":
+                //     addEmployee();
+                //     break;
+             // case "UPDATE_EMPLOYEE_ROLE":
+                //     updateEmployeeRole();
+                //     break;
             default:
                 quit();
         }

@@ -4,6 +4,7 @@
 "description": "Using command-line, the application is able to manage an employee database using MySQL, Node.js, and Inquirer.",
 "main": "index.js",
 "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
   "start": "node index"
 },
 "author": "",
