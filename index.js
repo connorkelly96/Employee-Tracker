@@ -1,5 +1,6 @@
 const { prompt } = require("inquirer");
 const db = require("./db");
+require("console.table");
 
 
 
@@ -108,7 +109,7 @@ function viewAllRoles() {
 }
 
 // View all deparments
-function viewallDepartments() {
+function viewAllDepartments() {
     db.allDepartments()
         .then(([rows]) => {
             let departments = rows;
