@@ -168,8 +168,9 @@ function createDepartment() {
                 .then(() => console.log(`Added ${name.name} to the database`))
                 .then(() => runPrompts())
         })
+    }
 
 // Quit app
 function quit() {
     process.exit();
-}}
+}
