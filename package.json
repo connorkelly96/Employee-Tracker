@@ -1,16 +1,16 @@
 {
   "name": "employee-tracker",
-"version": "1.0.0",
-"description": "Using command-line, the application is able to manage an employee database using MySQL, Node.js, and Inquirer.",
-"main": "index.js",
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node index"
-},
-"author": "",
-"license": "ISC",
+  "version": "1.0.0",
+  "description": "Using command-line, the application is able to manage an employee database using MySQL, Node.js, and Inquirer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "inquirer": "^9.1.2",
+    "inquirer": "^8.2.4",
     "mysql2": "^2.3.3"
   }
 }
