@@ -17,3 +17,4 @@ Inquirer
 MySQL
 
 ### Video Walkthrough:
+https://drive.google.com/file/d/1q8mNYvYV9o-II3MTSkamrVE1-LTFllN1/view
